@@ -1,76 +1,88 @@
-# ⚡ AffiliatePro
+# 🧡 Jagonya Shopee — Affiliate Storefront
 
-### Brand-Powered Affiliate Post Generator — 74 Real Design Systems
+### Rekomendasi Produk Skincare, Makeup & Parfum Terbaik
 
-Generate stunning affiliate product cards using design tokens extracted from 74 real-world brand websites. Pick a brand style, fill in your product details, and export HTML code or social media captions — all in a single zero-dependency HTML file.
+Shopee affiliate product storefront dengan tampilan marketplace profesional. Product grid, flash sale, kategori filter, search, sort, dan SEO optimized. Single HTML, zero dependencies.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-000?style=for-the-badge&logo=github)](https://gyoomei.github.io/affiliatepro/)
-[![Try Now](https://img.shields.io/badge/Try-Now-6366f1?style=for-the-badge&logo=googlechrome)](https://gyoomei.github.io/affiliatepro/)
-[![Brands](https://img.shields.io/badge/Brands-74-10b981?style=for-the-badge)](#brand-collection)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-ee4d2d?style=for-the-badge&logo=github)](https://gyoomei.github.io/affiliatepro/)
+[![Try Now](https://img.shields.io/badge/Try-Now-ee4d2d?style=for-the-badge&logo=googlechrome)](https://gyoomei.github.io/affiliatepro/)
+[![Products](https://img.shields.io/badge/Products-20+-10b981?style=for-the-badge)](#features)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
 
 ## 📖 The Problem
 
-Creating affiliate product posts that look professional is tedious. You need matching colors, typography, responsive layouts, and proper disclosure — for every product, across every platform. Most tools give you generic templates that don't match any real brand's design language.
+Membuat halaman affiliate Shopee yang profesional biasanya butuh Next.js, Tailwind, dan hosting berbayar. Affiliate tools yang ada cuma generate card biasa — bukan storefront lengkap dengan kategori, flash sale, dan search.
 
 ## ✨ How it works
 
 ```
-You pick:     Linear design system
-You fill:     Product name, price, image, affiliate link
-You get:      Production-ready HTML card + social media caption
+Buka:         https://gyoomei.github.io/affiliatepro/
+Lihat:        Product grid dengan filter kategori
+Search:       Cari produk favoritmu
+Klik:         Langsung ke Shopee affiliate link
 ```
 
-**That's the entire UX** — pick a brand, fill in details, export.
+**That's the entire UX** — buka, cari, klik, beli.
 
 ## 🎯 Core Features
 
 | Capability | Detail |
 |---|---|
-| Brand Design Systems | 74 real brands (Stripe, Linear, Vercel, Tesla, Nike, Spotify...) |
-| Card Layouts | 4 layouts: Vertical, Horizontal, Minimal, Featured |
-| HTML Export | Copy-paste ready responsive HTML code |
-| Social Captions | Auto-generated captions with hashtags and affiliate disclosure |
-| Price Display | Sale price, original price, automatic discount % badge |
-| Dark/Light Theme | Toggle between dark and light app themes |
-| Save Products | localStorage persistence for quick access |
-| Brand Search | Filter brands by name instantly |
+| Product Grid | Responsive grid dengan hover effect |
+| Flash Sale | Countdown timer + horizontal scroll |
+| Kategori | Skincare, Makeup, Parfum, Haircare |
+| Search | Real-time product search |
+| Sort | Rekomendasi, Terlaris, Terbaru, Harga ↑↓ |
+| Discount Badge | Auto-hitung % OFF dari harga asli |
+| Rating & Sold | Bintang + jumlah terjual |
+| SEO | Schema.org, Open Graph, meta tags |
+| Mobile | Fully responsive sampai 375px |
+| Sidebar | Kategori sidebar + promo gratis ongkir |
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│  Brand Tokens → Card Template → HTML Export  │
-│  (74 brands)   (4 layouts)    (clipboard)    │
-└─────────────────────────────────────────────┘
+┌────────────────────────────────────────────────┐
+│  Header (Search) → Hero → Categories → Grid    │
+│  Flash Sale → Sidebar → Sort → Product Cards   │
+│  Trust Section → Footer → Schema.org JSON-LD   │
+└────────────────────────────────────────────────┘
 ```
 
 ## 💡 Architecture Decisions
 
-**Why single HTML?** Zero build step, zero dependencies. Opens in any browser, deploys anywhere — GitHub Pages, Netlify, or just a file:// URL.
+**Why single HTML?** Zero build step, zero dependencies. Deploy di GitHub Pages, Netlify, atau langsung buka file. SEO-friendly dengan meta tags dan structured data.
 
-**Why client-side only?** No server needed. All brand tokens are embedded in JS. localStorage for persistence. No API keys, no tracking.
+**Why Shopee style?** User Indonesia familiar dengan UI Shopee. Orange theme, product cards dengan rating + sold count, flash sale countdown — semua elemen yang bikin user trust dan klik.
 
-**Why 74 brand tokens?** Real design systems produce better-looking cards than generic templates. Linear's near-black canvas + lavender accent reads completely different from Stripe's navy + indigo gradient.
+**Why client-side?** Tidak perlu server. Data produk di-embed di JS. Ganti produk tinggal edit array PRODUCTS.
 
-## 🧪 Try these examples
+## 🧪 Customization
 
-| Brand | Product | Layout |
-|---|---|---|
-| Linear | SaaS subscription | Vertical |
-| Stripe | Payment terminal | Horizontal |
-| Tesla | Model Y referral | Featured |
-| Nike | Running shoes | Minimal |
-| Spotify | Premium gift card | Vertical |
+Edit array `PRODUCTS` di dalam `<script>` untuk menambah/mengubah produk:
+
+```javascript
+{
+  name: "Nama Produk",
+  img: "https://gambar-produk.jpg",  // kosongkan untuk placeholder
+  price: 45000,                       // harga jual
+  original: 60000,                    // harga asli (untuk hitung diskon)
+  rating: 4.8,                        // rating bintang
+  sold: 12000,                        // jumlah terjual
+  category: "skincare",               // skincare|makeup|parfum|haircare
+  link: "https://s.shopee.co.id/xxx", // Shopee affiliate link
+  flash: true                         // tampilkan di Flash Sale
+}
+```
 
 ## 🛠️ Stack
 
-- **Frontend:** Vanilla JavaScript, single HTML file (~38KB)
-- **Design Tokens:** Extracted from [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (88K+ stars)
-- **Fonts:** [Sora](https://fonts.google.com/specimen/Sora) + [Nunito](https://fonts.google.com/specimen/Nunito) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
-- **Storage:** localStorage for saved products
+- **Frontend:** Vanilla JavaScript, single HTML file (~25KB)
+- **Font:** [Roboto](https://fonts.google.com/specimen/Roboto)
+- **Colors:** Shopee Orange (#ee4d2d) + Red (#d0011b)
+- **SEO:** Schema.org JSON-LD, Open Graph, Twitter Cards
 - **Hosting:** GitHub Pages (zero infra cost)
 
 ## 🚀 Quick Start
@@ -86,4 +98,4 @@ MIT — Use freely for personal and commercial projects.
 
 ---
 
-**Design tokens from [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) · 74 brands · Single HTML · Zero dependencies**
+**Built with 🧡 for Shopee affiliates · Single HTML · Zero dependencies · SEO Optimized**
